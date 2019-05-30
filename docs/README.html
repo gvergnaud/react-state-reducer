@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>reveal-md</title>
+    <link rel="stylesheet" href="./css/reveal.css" />
+    <link rel="stylesheet" href="./css/theme/solarized.css" id="theme" />
+    <link rel="stylesheet" href="./css/highlight/zenburn.css" />
+    <link rel="stylesheet" href="./css/print/paper.css" type="text/css" media="print" />
+
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section  data-markdown><script type="text/template">## React
+
+### Data flow, State et effets
+
+<p style="font-size:.7em">Slides: https://gvergnaud.github.io/react-state-effect</p>
+
+<aside class="notes"><p>Plan</p>
+<ul>
+<li><p>Qui suis je ?</p>
+<ul>
+<li>gabriel vergnaud</li>
+<li>Heticien P2017</li>
+<li>developer à Sketchfab.com (On recrute!)</li>
+<li>gvergnaud on github</li>
+<li>GabrielVergnaud on twitter</li>
+</ul>
+</li>
+<li><p>Recap sur react</p>
+<ul>
+<li><p>une application react est un arbre de composants</p>
+<pre><code>  Component
+   /      \
+ /          \
+</code></pre><p>Component     Component
+  /                \
+/                    \
+Component              Component</p>
+</li>
+<li><p>Chaque component contiens un state</p>
+<ul>
+<li>Le state est de la data qu&#39;il peut muter au cours du temps</li>
+<li>L&#39;UI est défini par le state (view = f(state))</li>
+</ul>
+</li>
+<li>a chaque fois qu&#39;un component update son state, tous les components enfants sont re-render
+pour updater le DOM</li>
+<li>Le data flow est <strong>unidirectionnel</strong>. Il se dirige toujours du haut vers le bas</li>
+<li>Les props d&#39;un component enfant est (presque) toujours le state d&#39;un component parent.</li>
+</ul>
+</li>
+<li><p>Cool</p>
+</li>
+<li><p>Vous avez appris <code>useState()</code> qui permet de déclarer un state updatable</p>
+<pre><code class="lang-js">const [count, setCount] = React.useState(0)
+console.log(count) // =&gt; 0
+setCount(1)
+setCount(x =&gt; x + 1)
+</code></pre>
+</li>
+</ul>
+<p>C&#39;est cool, ça marche bien, mais, lorsque le component se complexifie, ça a des limitations</p>
+<ul>
+<li>quand on a beaucoup de state
+```js
+const [isOpen, setIsOpen] = React.useState(false)
+const [search, setSearch] = React.useState(&#39;&#39;)
+const [sortBy, setSortBy] = React.useState(&#39;createdAt&#39;)
+const [category, setCategory] = React.useState(&#39;all&#39;)
+const [date, setDate] = React.useState(&#39;31&#39;)
+// ...</li>
+</ul>
+<p>const reset = () =&gt; {
+  setIsOpen(false)
+  setSearch(&#39;&#39;)
+  setSortBy(&#39;createdAt&#39;)
+  setCategory(&#39;all&#39;)
+  setDate(&#39;31&#39;)
+}
+```</p>
+<ul>
+<li>Dans une grande application on veut pouvoir refacto facilement, travailler à plusieur facilement et ajouter des fonctionnalité à notre projet sans complexifier le projet. cette version naive du state management est pratique pour les petit truc stateful isolé (genre un menu qui peut être ouvert ou fermé), mais est limité quand on veut construire quelque chose de complexe (comme notion!)</li>
+</ul>
+<ul>
+<li><p>State reducer pattern</p>
+<ul>
+<li><p>concept abstrait:</p>
+<ul>
+<li>(a, b) =&gt; a</li>
+<li>(state, action) =&gt; state</li>
+</ul>
+</li>
+<li><p>la forme des actions</p>
+<ul>
+<li>leur caractéristique principale: c&#39;est de la data! ca permet de:<ul>
+<li>serialiser les actions pour les envoyés sur un reseau (websocket, http, echange entre plusieurs process, electron...)</li>
+</ul>
+</li>
+<li>les transformer à la volé grace à des <strong>middlewares</strong><ul>
+<li>action
+-&gt; |middleware| -&gt; action modifiée
+-&gt; |middleware| -&gt; action remodifiée
+-&gt; |reducer| -&gt; state</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Le type des actions</p>
+<ul>
+<li>souvent des string</li>
+<li>permet au reducer de savoir de quel action il s&#39;agit</li>
+<li>(Parenthese) en TypeScript on peut le représenter comme un type union, ce qui permet de s&#39;assurer que son code est valide (pas d&#39;action oubliée, pas de typo dans le nom)</li>
+</ul>
+</li>
+<li><p>structurer son state grace au <code>state reducer pattern</code> permet de:</p>
+<ul>
+<li>avoir toutes les modifications de state <strong>au même endroit</strong>.</li>
+<li>ne pas pouvoir seter le state de manière arbitraire</li>
+<li>lire le state seulement par des accesseurs</li>
+<li>découpler l&#39;UI de la gestion du state</li>
+</ul>
+</li>
+<li><p>Toutes ces caractéristiques rendent le code plus facile à faire évoluer, ajouter des features, refacto, etc tout en gardant une complexité basse.</p>
+</li>
+<li><p>Un mot sur la complexité</p>
+<ul>
+<li>analogie avec la géométrie</li>
+<li>comment évaluer si un bout de code est simple ou complexe</li>
+</ul>
+</li>
+<li><p>vous avez peut être entendu parlé de redux ?</p>
+<ul>
+<li><p>une lib de state management qui permet de <strong>composer</strong> plusieurs reducers les uns avec les autres pour avoir un <strong>arbre de reducers</strong></p>
+<pre><code>  Reducer
+  /      \
+/          \
+</code></pre><p>  Reducer     Reducer
+  /                \
+/                    \
+Reducer                 Reducer</p>
+</li>
+<li><p>ou mobx</p>
+</li>
+<li>ou vuex
+je les connais pas, mais ces plus ou moins la même chose.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>// PETIT EXO CODE SANDBOX, utiliser React.useReducer</p>
+<ul>
+<li><p>les selectors</p>
+<ul>
+<li>l&#39;idée c&#39;est d&#39;avoir le plus petit state possible. </li>
+<li>Des que quelque chose dans notre state peut être dérivé d&#39;autre chose, alors il n&#39;a plus sa place dans le state.</li>
+<li>les selectors sont des functions qui permettent de dériver une valeur du state.</li>
+<li>un peu comme les computed properties en vue.</li>
+</ul>
+</li>
+<li><p>(Parenthese) Slide sur Make impossible state impossible</p>
+<ul>
+<li>Les datastructures utilisées dans le state doivent être en accord avec ce qu&#39;elle représente.<ul>
+<li>si vous avez pas le droit d&#39;avoir deux fois le même élément dans une liste, utiliser un Set plutot qu&#39;un Array</li>
+<li>Si deux boolean sont mutuellement exclusifs, utiliser soit un boolean, soit un union de string</li>
+<li>Si vous avez de la data qui correspond à un element, stockez par ID</li>
+</ul>
+</li>
+<li>Know your data structures! <ul>
+<li>List vs Set vs Map vs Queue vs Stack vs Trees vs Graphs vs Binary Trees ...</li>
+<li><a href="https://github.com/jamiebuilds/itsy-bitsy-data-structures">Itsy Bitsy Data Structures</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Recapitulons: Le state reducer pattern</p>
+<ul>
+<li><p>un module de state contient</p>
+<ul>
+<li>un reducer</li>
+<li>des actions</li>
+<li>des selectors</li>
+<li>des types</li>
+</ul>
+</li>
+<li><p>ce pattern permet de réduire la complexité du code, et d&#39;<strong>optimiser le code pour le changement</strong></p>
+</li>
+<li>(Parenthese) La pire erreur qu&#39;on peut faire en temps que developer c&#39;est de croire que l&#39;on sait comment le produit va évoluer. Les business requirement peuvent changer, votre produit peut pivoter... On ne peut pas deviner ce qu&#39;il faudra changer dans le future. Il faut mettre cette incertitude au coeur de nos choix de design, et garder la plus grande flexibilité possible dans notre codebase.</li>
+<li><a href="https://overreacted.io/optimized-for-change/">Dan abramov — Optimized for change</a></li>
+</ul>
+</li>
+</ul>
+</aside></script></section><section  data-markdown><script type="text/template"></script></section><section  data-markdown><script type="text/template">
+
+##  Objectifs
+
+
+
+</script></section><section  data-markdown><script type="text/template">
+## Petites questions
+
+</script></section><section  data-markdown><script type="text/template">
+## Merci
+
+#### de votre attention
+
+</script></section><section  data-markdown><script type="text/template">
+## Ressources
+
+- [Make impossible state impossible, par Richard Feldman](https://www.youtube.com/watch?v=IcgmSRJHu_8)
+- [Itsy Bitsy Data Structures, par @jamibuilds](https://github.com/jamiebuilds/itsy-bitsy-data-structures)
+- [Dan abramov — Optimized for change](https://overreacted.io/optimized-for-change/)</script></section><section  data-markdown><script type="text/template">
+Mon ptit nom c'est **Gabriel Vergnaud**
+
+- [@gvergnaud on Github](https://github.com/gvergnaud)
+- [@gabrielvergnaud on Twitter](https://twitter.com/GabrielVergnaud)
+- [LinkedIn](https://www.linkedin.com/in/gabriel-vergnaud-09446199)
+</script></section></div>
+    </div>
+
+    <script src="./lib/js/head.min.js"></script>
+    <script src="./js/reveal.js"></script>
+
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+      // Optional libraries used to extend on reveal.js
+      var deps = [
+        { src: './lib/js/classList.js', condition: function() { return !document.body.classList; } },
+        { src: './plugin/markdown/marked.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
+        { src: './plugin/markdown/markdown.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
+        { src: './plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: './plugin/zoom-js/zoom.js', async: true },
+        { src: './plugin/notes/notes.js', async: true },
+        { src: './plugin/math/math.js', async: true }
+      ];
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        dependencies: deps
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal.getQueryHash() || {};
+
+      var options = extend(defaultOptions, {}, queryOptions);
+    </script>
+
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+</html>
