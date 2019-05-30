@@ -1,8 +1,69 @@
 ## React
-
-### Data flow, State et effets
+### State reducer pattern
 
 <p style="font-size:.7em">Slides: https://gvergnaud.github.io/react-state-effect</p>
+
+
+---
+
+## 👋
+
+**Gabriel Vergnaud**
+
+Héticien de la P2017
+
+<div class="flex">
+  <span>Frontend engineer </span><img src="resources/logo-sketchfab.png" class="simple-image" style="width:200px" />
+</div>
+
+<div class="flex">
+[@gvergnaud](https://github.com/gvergnaud)<span> on </span><img
+  src="resources/logo-github.png"
+  class="simple-image"
+  style="width:50px;" />
+</div>
+
+<div class="flex">
+[@GabrielVergnaud](https://twitter.com/GabrielVergnaud)<span> on </span><img
+  src="resources/logo-twitter.png"
+  class="simple-image"
+  style="width:50px;" />
+</div>
+
+---
+
+petit recapitulatif sur **React** ...
+
+---
+
+<h2 class="white">Un arbre</h2>
+<h6 class="white lower">(de composants)</h6>
+
+<!-- .slide: data-background="resources/tree.jpeg" -->
+
+---
+
+![react tree update](resources/react-tree-update.png)
+
+<p class="fragment">Chaque composant peut contenir un **state**</p>
+
+---
+
+### le state
+<p class="fragment">la **data** qui défini l'interface</p>
+<p class="fragment">Quand le state **update**, l'interface **update**</p>
+
+
+---
+
+// TODO exemple de state sous form JSON à coté d'une app (genre todo list)
+
+
+---
+
+### Data flow
+En react le data flow est **unidirectionnel**.
+
 
 Note:
 
@@ -72,6 +133,10 @@ const reset = () => {
   - la forme des actions
     - leur caractéristique principale: c'est de la data! ca permet de:
       - serialiser les actions pour les envoyés sur un reseau (websocket, http, echange entre plusieurs process, electron...)
+      - debugger facilement
+        - inspecter les changement
+        - undo et redo des changement
+        - time travel debugging
     - les transformer à la volé grace à des **middlewares**
       - action
         -> |middleware| -> action modifiée
@@ -171,3 +236,29 @@ Mon ptit nom c'est **Gabriel Vergnaud**
 - [@gvergnaud on Github](https://github.com/gvergnaud)
 - [@gabrielvergnaud on Twitter](https://twitter.com/GabrielVergnaud)
 - [LinkedIn](https://www.linkedin.com/in/gabriel-vergnaud-09446199)
+
+
+<style>
+  .flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .flex > *:not(:first-child) {
+    margin-left: 10px
+  }
+
+  img.simple-image.simple-image {
+    border:none;
+    box-shadow:none;
+  }
+
+  .white.white.white {
+    color: white;
+    text-shadow: 0 2px 4px rgba(0,0,0, .5);
+  }
+
+  .lower.lower.lower {
+    text-transform: none;
+  }
+</style>
