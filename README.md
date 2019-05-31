@@ -367,7 +367,7 @@ Note:
 
 ---
 
-(Parenthèse)
+<small>(Parenthèse)</small>
 
 <small>en **TypeScript** on peut représenter nos actions comme un **type union**, ce qui permet de s'assurer que son code est **valide**</small>
 
@@ -389,12 +389,8 @@ Un truc a connaitre
 
 ---
 
-### DEMO
 
----
-
-
-#### Structurer son state en modules
+### Structurer son state en modules
 
 ---
 
@@ -414,11 +410,91 @@ export const selectors = {/* ... */}
 <small>un module exporte des **types**, des **actions**, un **reducer** et des **selectors**.</small>
 
 
+---
+
+```js
+
+export const types = {
+  INCREMENT: 'INCREMENT',
+  DECREMENT: 'DECREMENT',
+}
+
+```
+
+---
+
+```js
+
+export const actions = {
+  increment: value => ({ type: types.INCREMENT, value }),
+  decrement: value => ({ type: types.DECREMENT, value }),
+}
+
+```
+
+---
+
+```js
+
+export const initialState = {
+  count: 0
+}
+
+```
+
+---
+
+```js
+export const reducer = (state, action) => {
+  switch (action.type) {
+    case types.INCREMENT:
+      return { ...state, count: state.count + 1 }
+
+    case types.DECREMENT:
+      return { ...state, count: state.count - 1 }
+  }
+}
+```
+
+---
+
+```js
+export const selectors = {
+  count: (state) => state.count
+}
+```
+
+le state doit être **minimal**. 
+
+<small>Tout ce qui peut être **dérivé** du state doit être défini avec des selectors.</small>
+
+Note:
+
+- les selectors
+  - l'idée c'est d'avoir le plus petit state possible. 
+  - Des que quelque chose dans notre state peut être dérivé d'autre chose, alors il n'a plus sa place dans le state.
+  - les selectors sont des functions qui permettent de dériver une valeur du state.
+  - un peu comme les computed properties en vue.
+
+
+
+---
+<h3 class="white">DEMO</h3>
+
+<!-- .slide: data-background="https://media.giphy.com/media/3o7aCTfyhYawdOXcFW/giphy.gif" -->
+
+---
+
+
+Un state facile à faire **évoluer**
+
+<small class="fragment">Toutes les modifications de state sont **au même endroit**.</small>
+<small class="fragment">Que des fonctions pures implique un comportement **consistent** et **prévisible**.</small>
+<small class="fragment">Le state **read-only** accessible que par des selecteurs permet **refacto** sans casser l'API public.</small>
+<small class="fragment">On peut ajouter des fonctionnalités sans augmenter la **complexité** du code.</small>
 
 Note:
     
-  
-
   - structurer son state grace au `state reducer pattern` permet de:
     - Avoir une application dont le comportement est prévisible et consistant. 
     - avoir toutes les modifications de state **au même endroit**.
@@ -427,9 +503,54 @@ Note:
     - découpler l'UI de la gestion du state
   - Toutes ces caractéristiques rendent le code plus facile à faire évoluer, ajouter des features, refacto, etc tout en gardant une complexité basse.
 
-  - Un mot sur la complexité
-    - analogie avec la géométrie
-    - comment évaluer si un bout de code est simple ou complexe
+---
+<small>(Parenthèse)</small>
+
+Qu'est ce que la **complexité** du code ?
+
+
+---
+
+En géométrie
+
+<img class=simple-image src=resources/circle.png />
+<img class=simple-image src=resources/triangle.png />
+
+<p class=fragment>deux formes simples</p>
+
+---
+
+
+
+<img src=resources/logo-apple-forme-complexe.jpg  style="height:60vh" />
+
+
+<p class=fragment>Une forme complexe</p>
+
+
+---
+
+Comment évaluer si un bout de code est <br/>
+complexe ou non ?
+
+---
+
+Comme en géométrie, une fonction est **complexe** si elle **fait plusieurs** choses **différentes**.
+
+---
+
+Pour garder un code maintenable il faut **décomposer** les fonctions complexes en petites fonctions simples.
+
+---
+
+<small>(fin de la parenthèse)</small>
+
+---
+
+State libraries
+- redux
+
+Note:
 
   - vous avez peut être entendu parlé de redux ?
     - une lib de state management qui permet de **composer** plusieurs reducers les uns avec les autres pour avoir un **arbre de reducers**
@@ -445,22 +566,37 @@ Note:
     - ou vuex
     je les connais pas, mais ces plus ou moins la même chose.
 
-// PETIT EXO CODE SANDBOX, utiliser React.useReducer
+---
 
-- les selectors
-  - l'idée c'est d'avoir le plus petit state possible. 
-  - Des que quelque chose dans notre state peut être dérivé d'autre chose, alors il n'a plus sa place dans le state.
-  - les selectors sont des functions qui permettent de dériver une valeur du state.
-  - un peu comme les computed properties en vue.
+Resources intéressantes sur la gestion du state
+
+---
+
+Make impossible state impossible
+
+Note:
 
 - (Parenthese) Slide sur Make impossible state impossible
   - Les datastructures utilisées dans le state doivent être en accord avec ce qu'elle représente.
     - si vous avez pas le droit d'avoir deux fois le même élément dans une liste, utiliser un Set plutot qu'un Array
     - Si deux boolean sont mutuellement exclusifs, utiliser soit un boolean, soit un union de string
     - Si vous avez de la data qui correspond à un element, stockez par ID
-  - Know your data structures! 
-    - List vs Set vs Map vs Queue vs Stack vs Trees vs Graphs vs Binary Trees ...
-    - [Itsy Bitsy Data Structures](https://github.com/jamiebuilds/itsy-bitsy-data-structures)
+
+
+---
+
+Know your data structures!
+
+List vs Set vs Map vs Queue vs Stack vs Trees vs Graphs vs Binary Trees ...
+
+[Itsy Bitsy Data Structures](https://github.com/jamiebuilds/itsy-bitsy-data-structures)
+
+---
+
+Recap
+
+Note:
+
 
 - Recapitulons: Le state reducer pattern
   - un module de state contient
@@ -474,43 +610,43 @@ Note:
   - [Dan abramov — Optimized for change](https://overreacted.io/optimized-for-change/)
   - Un code optimisé pour le changement === un code avec aucune relation implicite
   - distinction relation explicite vs relation implicite
----
 
 ---
 
 
-##  Objectifs
+### Merci
 
-
-
-
----
-
-## Petites questions
+##### de votre attention
 
 
 ---
 
-## Merci
-
-#### de votre attention
-
-
----
-
-## Ressources
+### Ressources
 
 - [Make impossible state impossible, par Richard Feldman](https://www.youtube.com/watch?v=IcgmSRJHu_8)
 - [Itsy Bitsy Data Structures, par @jamibuilds](https://github.com/jamiebuilds/itsy-bitsy-data-structures)
 - [Dan abramov — Optimized for change](https://overreacted.io/optimized-for-change/)
 ---
 
-Mon ptit nom c'est **Gabriel Vergnaud**
+**Gabriel Vergnaud**
 
-- [@gvergnaud on Github](https://github.com/gvergnaud)
-- [@gabrielvergnaud on Twitter](https://twitter.com/GabrielVergnaud)
+- [Github](https://github.com/gvergnaud)
+- [Twitter](https://twitter.com/GabrielVergnaud)
 - [LinkedIn](https://www.linkedin.com/in/gabriel-vergnaud-09446199)
 
+
+Note:
+good gifs 
+shipit: https://giphy.com/gifs/fail-code-boat-143vPc6b08locw
+keyboard:
+ - https://giphy.com/gifs/vodafone-de-done-keyboard-l378gxtNQaXcsqY7K
+ - https://giphy.com/gifs/working-typing-cartoon-11BbGyhVmk4iLS
+ - https://giphy.com/gifs/tmnt-teenage-mutant-ninja-turtles-cFdHXXm5GhJsc
+ - https://media.giphy.com/media/3o7aCTfyhYawdOXcFW/giphy.gif
+c pas sorcier 
+- https://gfycat.com/fr/grandwearyflea
+- https://giphy.com/gifs/cannabis-jamy-gourmaud-I9LxqeAcsBRNS
+- https://www.google.com/imgres?imgurl=https%3A%2F%2Fresize-europe1.lanmedia.fr%2Fr%2F622%2C311%2Cforcex%2Ccenter-middle%2Fimg%2Fvar%2Feurope1%2Fstorage%2Fimages%2Feurope1%2Fmedias-tele%2Ffred-et-jamy-devoilent-le-nouveau-cest-pas-sorcier-1353712%2F21066760-1-fre-FR%2FFred-et-Jamy-devoilent-le-nouveau-C-est-pas-sorcier.jpg&imgrefurl=https%3A%2F%2Fwww.europe1.fr%2Fmedias-tele%2Ffred-et-jamy-devoilent-le-nouveau-cest-pas-sorcier-1353712&docid=XLVABVUvKIBgHM&tbnid=F-V_Lzs40s6APM%3A&vet=10ahUKEwjD4OWLl8biAhVC8uAKHcBuA0kQMwhRKAEwAQ..i&w=622&h=311&safe=off&bih=766&biw=1440&q=image%20jamie%20fred%20et%20jamy&ved=0ahUKEwjD4OWLl8biAhVC8uAKHcBuA0kQMwhRKAEwAQ&iact=mrc&uact=8
 
 <style>
   .flex {
@@ -540,6 +676,12 @@ Mon ptit nom c'est **Gabriel Vergnaud**
     border-radius: 5px;
     box-shadow: 0px 8px 25px rgba(0,0,0,.25);
   }
+
+  .reveal section img {
+    border: none;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15)
+  }
+
   .reveal pre code {
     padding: 30px;
     border-radius: 5px;
