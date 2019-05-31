@@ -1,7 +1,7 @@
 ## React
 ### State reducer pattern
 
-<p style="font-size:.7em">Slides: https://gvergnaud.github.io/react-state-effect</p>
+<p style="font-size:.7em">Slides: https://gvergnaud.github.io/react-state-reducer</p>
 
 
 ---
@@ -31,7 +31,7 @@ Héticien de la P2017
 </div>
 
 ---
-
+# I
 petit recapitulatif sur **React** ...
 
 ---
@@ -58,6 +58,14 @@ petit recapitulatif sur **React** ...
 
 // TODO exemple de state sous form JSON à coté d'une app (genre todo list)
 
+
+---
+
+`view = f(state)`
+
+React permet de ne plus avoir à penser à la view.
+
+Il suffit de penser au state
 
 ---
 
@@ -125,7 +133,7 @@ const reset = () => {
   - Dans une grande application on veut pouvoir refacto facilement, travailler à plusieur facilement et ajouter des fonctionnalité à notre projet sans complexifier le projet. cette version naive du state management est pratique pour les petit truc stateful isolé (genre un menu qui peut être ouvert ou fermé), mais est limité quand on veut construire quelque chose de complexe (comme notion!)
 
 
-- State reducer pattern
+- II. State reducer pattern
   - concept abstrait:
     - (a, b) => a
     - (state, action) => state
@@ -133,7 +141,7 @@ const reset = () => {
   - la forme des actions
     - leur caractéristique principale: c'est de la data! ca permet de:
       - serialiser les actions pour les envoyés sur un reseau (websocket, http, echange entre plusieurs process, electron...)
-      - debugger facilement
+      - debugger facilement (DEMO redux devtools sur sketchfab)
         - inspecter les changement
         - undo et redo des changement
         - time travel debugging
@@ -149,8 +157,9 @@ const reset = () => {
     - (Parenthese) en TypeScript on peut le représenter comme un type union, ce qui permet de s'assurer que son code est valide (pas d'action oubliée, pas de typo dans le nom)
 
   - structurer son state grace au `state reducer pattern` permet de:
+    - Avoir une application dont le comportement est prévisible et consistant. 
     - avoir toutes les modifications de state **au même endroit**.
-    - ne pas pouvoir seter le state de manière arbitraire
+    - ne pas pouvoir setter le state de manière arbitraire
     - lire le state seulement par des accesseurs
     - découpler l'UI de la gestion du state
   - Toutes ces caractéristiques rendent le code plus facile à faire évoluer, ajouter des features, refacto, etc tout en gardant une complexité basse.
