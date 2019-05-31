@@ -30,7 +30,54 @@ Héticien de la P2017
   style="width:50px;" />
 </div>
 
+Note:
+- Qui suis je ?
+  - gabriel vergnaud
+  - Heticien P2017
+  - developer à Sketchfab.com (On recrute!)
+  - gvergnaud on github
+  - GabrielVergnaud on twitter
+
 ---
+
+
+## 👀
+<p class="fragment">Qui êtes vous ?</p>
+
+
+Note:
+- Qui etes vous ?
+  - Techno utilisée ? 
+  - quels projets ?
+  - plutot agence / produits ?
+
+---
+
+## 🗺
+<div style="display:flex; flex-direction: column; align-items: flex-start; width: 600px; margin: 0 auto;">
+  <div class="flex">
+    <h3 style="margin:0; margin-right:10px;">I.</h3>
+    recapitulatif sur react
+  </div>
+
+  <div class="flex">
+    <h3 style="margin:0; margin-right:10px;">II.</h3>
+    state reducer pattern
+  </div>
+
+  <div class="flex">
+    <h3 style="margin:0; margin-right:10px;">III.</h3>
+    les side effects
+  </div>
+
+  <div class="flex">
+    <h3 style="margin:0; margin-right:10px;">exercice.</h3>
+    <img class="simple-image" src="resources/logo-notion.png" style="width: 70px" /><span> Cloner Notion </span>
+  </div>
+</div>
+
+---
+
 # I
 petit recapitulatif sur **React** ...
 
@@ -47,41 +94,7 @@ petit recapitulatif sur **React** ...
 
 <p class="fragment">Chaque composant peut contenir un **state**</p>
 
----
-
-### le state
-<p class="fragment">la **data** qui défini l'interface</p>
-<p class="fragment">Quand le state **update**, l'interface **update**</p>
-
-
----
-
-// TODO exemple de state sous form JSON à coté d'une app (genre todo list)
-
-
----
-
-`view = f(state)`
-
-React permet de ne plus avoir à penser à la view.
-
-Il suffit de penser au state
-
----
-
-### Data flow
-En react le data flow est **unidirectionnel**.
-
-
 Note:
-
-Plan
-- Qui suis je ?
-  - gabriel vergnaud
-  - Heticien P2017
-  - developer à Sketchfab.com (On recrute!)
-  - gvergnaud on github
-  - GabrielVergnaud on twitter
 
 - Recap sur react
   - une application react est un arbre de composants
@@ -94,26 +107,84 @@ Plan
     /                    \
 Component              Component
 
+---
+
+### le state
+<p class="fragment">la **data** qui défini l'interface</p>
+<p class="fragment">Quand le state **update**, l'interface **update**</p>
+
+Note:
+
   - Chaque component contiens un state
     - Le state est de la data qu'il peut muter au cours du temps
     - L'UI est défini par le state (view = f(state))
+
+---
+<div class="flex">
+  <img class="simple-image" src="resources/todo-state.png" style="width:40vw" />
+  <img src="resources/todo-app.png" style="width:40vw" />
+</div>
+
+---
+
+`view = f(state)`
+
+plus besoin d'update la view.
+
+Il suffit d'update le state
+
+---
+
+### Data flow
+
+<p class="fragment">En react le data flow est **unidirectionnel**</p>
+
+<p class="fragment">composant **parent** → composants **enfants**</p>
+
+<p class="fragment">data **down**, events **up**</p>
+
+Note:
+
+  - Contrairement a d'autres framework ou les enfant peuvent directement updater leurs parents,
+  en react le data flow est **unidirectionnel**. Il se dirige toujours du parent vers les enfants
   - a chaque fois qu'un component update son state, tous les components enfants sont re-render
     pour updater le DOM
-  - Le data flow est **unidirectionnel**. Il se dirige toujours du haut vers le bas
   - Les props d'un component enfant est (presque) toujours le state d'un component parent.
 
-- Cool
 
-- Vous avez appris `useState()` qui permet de déclarer un state updatable
-```js
-const [count, setCount] = React.useState(0)
-console.log(count) // => 0
-setCount(1)
-setCount(x => x + 1)
+---
+
+<p class="white fragment">Cool.</p>
+<!-- .slide: data-background="https://media.giphy.com/media/GCvktC0KFy9l6/giphy.gif" -->
+
+---
+
+Vous connaissez **useState()**
+
+```jsx
+function Counter() {
+  const [count, setCount] = React.useState(0)
+
+  return (
+    <div>
+      <p>{count}</p>
+      <button onClick={() => setCount(x => x + 1)}>+</button>
+    </div>
+  )
+}
 ```
+<p class="fragment">C'est pratique</p>
 
-C'est cool, ça marche bien, mais, lorsque le component se complexifie, ça a des limitations
-  - quand on a beaucoup de state
+Note:
+- Vous avez appris `useState()` qui permet de déclarer un state updatable
+
+---
+
+Mais ça a des limitations
+
+---
+
+
 ```js
 const [isOpen, setIsOpen] = React.useState(false)
 const [search, setSearch] = React.useState('')
@@ -130,13 +201,156 @@ const reset = () => {
   setDate('31')
 }
 ```
+<p class="fragment">ça ne **scale** pas</p>
+
+---
+
+**le code se complexifie**
+
+<small>les modifications de state peuvent provenir de n'importe où.</small>
+
+
+**difficile à debugger**
+
+<small>aucun moyen simple d'inspecter le code et ses updates au cours du temps.</small>
+
+
+Note:
+
+C'est cool, ça marche bien, mais, lorsque le component se complexifie, ça a des limitations
+  - quand on a beaucoup de state
   - Dans une grande application on veut pouvoir refacto facilement, travailler à plusieur facilement et ajouter des fonctionnalité à notre projet sans complexifier le projet. cette version naive du state management est pratique pour les petit truc stateful isolé (genre un menu qui peut être ouvert ou fermé), mais est limité quand on veut construire quelque chose de complexe (comme notion!)
+
+---
+
+
+# II
+State reducer pattern
+
+---
+
+Un nouveau hook
+
+```js
+const [state, dispatch] = useReducer(reducer, initialState)
+```
+
+---
+
+<p class="white">Mais qu'est ce qu'un reducer ?</p>
+
+<!-- .slide: data-background="https://media.giphy.com/media/7K3p2z8Hh9QOI/giphy.gif" -->
+
+
+---
+
+Un reducer est une function **pure**
+
+de type `(A, B) => A`
+
+Avec `A` et `B` des types variables.
+
+Note:
 
 
 - II. State reducer pattern
   - concept abstrait:
     - (a, b) => a
     - (state, action) => state
+
+
+---
+
+
+<p class="white fragment">C'est abstrait.</p>
+
+<!-- .slide: data-background="https://media.giphy.com/media/pPhyAv5t9V8djyRFJH/giphy.gif" -->
+
+
+
+---
+
+Vous vous souvenez de `Array.reduce` ?
+
+
+
+```js
+const reducer = (sum, phrase) => sum + phrase.length
+
+[
+  'Hello',
+  'Bonjour',
+  'Hallo',
+  'Buenos dias'
+].reduce(reducer, 0)
+```
+
+<div class="fragment">
+<p>ici le type est **concret** est</p>
+
+<p>`(number, string) => number`</p>
+</div>
+
+
+---
+
+Dans le cas de notre application, le type concret sera
+
+`(state, action) => state`
+
+
+---
+
+Une action ?
+
+```js
+const addOne = { type: 'ADD', value: 1 } // notre action
+
+const reducer = (state, action) => {
+  if (action.type === 'ADD') return state + action.value
+  return state
+}
+
+reducer(10, addOne)
+// => 11
+```
+<p class="fragment">juste de la **data**!</p>
+
+
+---
+
+**Les types**
+
+<small>Des strings uniques qui permettent de communiquer l'intention de l'utilisateur au reducer.</small>
+
+```js
+const INCREMENT = 'INCREMENT'
+const DECREMENT = 'DECREMENT'
+```
+
+Note:
+
+- Le type des actions
+    - souvent des string
+    - permet au reducer de savoir de quel action il s'agit
+
+---
+
+<small>Les **actions** sont</small>
+
+<p class="fragment">**Serialisable**</p>
+
+<p class="fragment"><small>On peut envoyer en action via **HTTP** ou **WebSocket**</small></p>
+
+<p class="fragment">**Transformable**</p>
+
+<p class="fragment"><small>On peut **modifier** les actions à la volée avant de les envoyer au reducer</small></p>
+
+<p class="fragment">**Inspectable**</p>
+
+<p class="fragment"><small>On peut **logger** et **sauvegarder** le flux d'actions pour remonter dans le temps</small></p>
+
+Note:
 
   - la forme des actions
     - leur caractéristique principale: c'est de la data! ca permet de:
@@ -150,11 +364,60 @@ const reset = () => {
         -> |middleware| -> action modifiée
         -> |middleware| -> action remodifiée
         -> |reducer| -> state
+
+---
+
+(Parenthèse)
+
+<small>en **TypeScript** on peut représenter nos actions comme un **type union**, ce qui permet de s'assurer que son code est **valide**</small>
+
+<small>(pas d'action oubliée, pas d'erreur dans le nom d'un type)</small>
+
+```ts
+type Action =
+  | { type: 'INCREMENT', value: number }
+  | { type: 'DECREMENT', value: number }
+```
+
+Note:
+
+faites pas trop attention à la syntaxe, si on a le temps et si ça vous interesse je vous ferais un petit cours de typescript en fin de semaine.
+
+C'est de plus en plus utilisé, il y a 50% de la communité JS qui a switché sur TS en 2 ans.
+
+Un truc a connaitre
+
+---
+
+### DEMO
+
+---
+
+
+#### Structurer son state en modules
+
+---
+
+```js
+// myStateModule.js
+
+export const types = {/* ... */}
+
+export const actions = {/* ... */}
+
+export const initialState = {/* ... */}
+
+export const reducer = (state, action) => {/* ... */}
+
+export const selectors = {/* ... */}
+```
+<small>un module exporte des **types**, des **actions**, un **reducer** et des **selectors**.</small>
+
+
+
+Note:
     
-  - Le type des actions
-    - souvent des string
-    - permet au reducer de savoir de quel action il s'agit
-    - (Parenthese) en TypeScript on peut le représenter comme un type union, ce qui permet de s'assurer que son code est valide (pas d'action oubliée, pas de typo dans le nom)
+  
 
   - structurer son state grace au `state reducer pattern` permet de:
     - Avoir une application dont le comportement est prévisible et consistant. 
@@ -209,6 +472,8 @@ const reset = () => {
   - ce pattern permet de réduire la complexité du code, et d'**optimiser le code pour le changement**
   - (Parenthese) La pire erreur qu'on peut faire en temps que developer c'est de croire que l'on sait comment le produit va évoluer. Les business requirement peuvent changer, votre produit peut pivoter... On ne peut pas deviner ce qu'il faudra changer dans le future. Il faut mettre cette incertitude au coeur de nos choix de design, et garder la plus grande flexibilité possible dans notre codebase.
   - [Dan abramov — Optimized for change](https://overreacted.io/optimized-for-change/)
+  - Un code optimisé pour le changement === un code avec aucune relation implicite
+  - distinction relation explicite vs relation implicite
 ---
 
 ---
@@ -269,5 +534,19 @@ Mon ptit nom c'est **Gabriel Vergnaud**
 
   .lower.lower.lower {
     text-transform: none;
+  }
+
+  .reveal pre {
+    border-radius: 5px;
+    box-shadow: 0px 8px 25px rgba(0,0,0,.25);
+  }
+  .reveal pre code {
+    padding: 30px;
+    border-radius: 5px;
+    font-weight: normal;
+  }
+
+  .reveal code {
+    font-weight: bold;
   }
 </style>

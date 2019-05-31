@@ -5,7 +5,7 @@
     "reveal-md": "^3.0.4"
   },
   "scripts": {
-    "dist": "rm -rf ./docs && reveal-md README.md --theme solarized --static docs --static-dirs=resources",
-    "start": "reveal-md README.md --theme solarized -w"
+    "dist": "rm -rf ./docs && reveal-md README.md --theme solarized --highlight-theme atom-one-dark --static docs --static-dirs=resources",
+    "start": "reveal-md README.md --theme solarized --highlight-theme atom-one-dark -w"
   }
 }
