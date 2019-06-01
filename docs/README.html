@@ -26,18 +26,18 @@
 Héticien de la P2017
 
 <div class="flex">
-  <span>Frontend engineer </span><img src="resources/logo-sketchfab.png" class="simple-image" style="width:200px" />
+  <span>Frontend engineer&nbsp;</span><img src="resources/logo-sketchfab.png" class="simple-image" style="width:200px" />
 </div>
 
 <div class="flex">
-[@gvergnaud](https://github.com/gvergnaud)<span> on </span><img
+[@gvergnaud](https://github.com/gvergnaud)<span>&nbsp;on&nbsp;</span><img
   src="resources/logo-github.png"
   class="simple-image"
   style="width:50px;" />
 </div>
 
 <div class="flex">
-[@GabrielVergnaud](https://twitter.com/GabrielVergnaud)<span> on </span><img
+[@GabrielVergnaud](https://twitter.com/GabrielVergnaud)<span>&nbsp;on&nbsp;</span><img
   src="resources/logo-twitter.png"
   class="simple-image"
   style="width:50px;" />
@@ -72,7 +72,7 @@ Héticien de la P2017
 <div style="display:flex; flex-direction: column; align-items: flex-start; width: 600px; margin: 0 auto;">
   <div class="flex">
     <h3 style="margin:0; margin-right:10px;">I.</h3>
-    recapitulatif sur react
+    récapitulatif sur react
   </div>
 
   <div class="flex">
@@ -82,17 +82,12 @@ Héticien de la P2017
 
   <div class="flex">
     <h3 style="margin:0; margin-right:10px;">III.</h3>
-    les side effects
-  </div>
-
-  <div class="flex">
-    <h3 style="margin:0; margin-right:10px;">exercice.</h3>
-    <img class="simple-image" src="resources/logo-notion.png" style="width: 70px" /><span> Cloner Notion </span>
+    <span>exercice : cloner Notion&nbsp;</span><img class="simple-image" src="resources/logo-notion.png" style="width: 70px" />
   </div>
 </div>
 </script></section><section  data-markdown><script type="text/template">
 # I
-petit recapitulatif sur **React** ...
+Petit récapitulatif sur **React** ...
 </script></section><section  data-markdown><script type="text/template">
 <h2 class="white">Un arbre</h2>
 <h6 class="white lower">(de composants)</h6>
@@ -274,7 +269,7 @@ const reducer = (sum, phrase) => sum + phrase.length
 ```
 
 <div class="fragment">
-<p>ici le type est **concret** est</p>
+<p>ici le type **concret** est</p>
 
 <p>`(number, string) => number`</p>
 </div>
@@ -322,7 +317,7 @@ const DECREMENT = 'DECREMENT'
 
 <p class="fragment">**Serialisable**</p>
 
-<p class="fragment"><small>On peut envoyer en action via **HTTP** ou **WebSocket**</small></p>
+<p class="fragment"><small>On peut envoyer une action via **HTTP** ou **WebSocket**</small></p>
 
 <p class="fragment">**Transformable**</p>
 
@@ -381,13 +376,13 @@ export const types = {/* ... */}
 
 export const actions = {/* ... */}
 
+export const selectors = {/* ... */}
+
 export const initialState = {/* ... */}
 
 export const reducer = (state, action) => {/* ... */}
-
-export const selectors = {/* ... */}
 ```
-<small>un module exporte des **types**, des **actions**, un **reducer** et des **selectors**.</small>
+<small>un module exporte des **types**, des **actions**, des **selectors**, un **initialState** et un **reducer**.</small>
 
 </script></section><section  data-markdown><script type="text/template">
 ```js
@@ -409,26 +404,6 @@ export const actions = {
 ```
 </script></section><section  data-markdown><script type="text/template">
 ```js
-
-export const initialState = {
-  count: 0
-}
-
-```
-</script></section><section  data-markdown><script type="text/template">
-```js
-export const reducer = (state, action) => {
-  switch (action.type) {
-    case types.INCREMENT:
-      return { ...state, count: state.count + 1 }
-
-    case types.DECREMENT:
-      return { ...state, count: state.count - 1 }
-  }
-}
-```
-</script></section><section  data-markdown><script type="text/template">
-```js
 export const selectors = {
   count: (state) => state.count
 }
@@ -447,7 +422,27 @@ le state doit être **minimal**.
 </ul>
 </li>
 </ul>
-</aside></script></section><section  data-markdown><script type="text/template"><h3 class="white">DEMO</h3>
+</aside></script></section><section  data-markdown><script type="text/template">
+```js
+
+export const initialState = {
+  count: 0
+}
+
+```
+</script></section><section  data-markdown><script type="text/template">
+```js
+export const reducer = (state, action) => {
+  switch (action.type) {
+    case types.INCREMENT:
+      return { ...state, count: state.count + 1 }
+
+    case types.DECREMENT:
+      return { ...state, count: state.count - 1 }
+  }
+}
+```
+</script></section><section  data-markdown><script type="text/template"><h3 class="white">DEMO</h3>
 
 <!-- .slide: data-background="https://media.giphy.com/media/3o7aCTfyhYawdOXcFW/giphy.gif" -->
 </script></section><section  data-markdown><script type="text/template">
@@ -456,7 +451,7 @@ Un state facile à faire **évoluer**
 
 <small class="fragment">Toutes les modifications de state sont **au même endroit**.</small>
 <small class="fragment">Que des fonctions pures implique un comportement **consistent** et **prévisible**.</small>
-<small class="fragment">Le state **read-only** accessible que par des selecteurs permet **refacto** sans casser l'API public.</small>
+<small class="fragment">Le state **read-only**, accessible par des selecteurs, permet **refacto** sans casser l'API public.</small>
 <small class="fragment">On peut ajouter des fonctionnalités sans augmenter la **complexité** du code.</small>
 
 <aside class="notes"><ul>
@@ -640,22 +635,18 @@ de votre attention
 - [Twitter](https://twitter.com/GabrielVergnaud)
 - [LinkedIn](https://www.linkedin.com/in/gabriel-vergnaud-09446199)
 
-<!-- 
-<aside class="notes"><p>good gifs 
-shipit: <a href="https://giphy.com/gifs/fail-code-boat-143vPc6b08locw">https://giphy.com/gifs/fail-code-boat-143vPc6b08locw</a>
-keyboard:</p>
-<ul>
-<li><a href="https://giphy.com/gifs/vodafone-de-done-keyboard-l378gxtNQaXcsqY7K">https://giphy.com/gifs/vodafone-de-done-keyboard-l378gxtNQaXcsqY7K</a></li>
-<li><a href="https://giphy.com/gifs/working-typing-cartoon-11BbGyhVmk4iLS">https://giphy.com/gifs/working-typing-cartoon-11BbGyhVmk4iLS</a></li>
-<li><a href="https://giphy.com/gifs/tmnt-teenage-mutant-ninja-turtles-cFdHXXm5GhJsc">https://giphy.com/gifs/tmnt-teenage-mutant-ninja-turtles-cFdHXXm5GhJsc</a></li>
-<li><a href="https://media.giphy.com/media/3o7aCTfyhYawdOXcFW/giphy.gif">https://media.giphy.com/media/3o7aCTfyhYawdOXcFW/giphy.gif</a>
-c pas sorcier <ul>
-<li><a href="https://gfycat.com/fr/grandwearyflea">https://gfycat.com/fr/grandwearyflea</a></li>
-<li><a href="https://giphy.com/gifs/cannabis-jamy-gourmaud-I9LxqeAcsBRNS">https://giphy.com/gifs/cannabis-jamy-gourmaud-I9LxqeAcsBRNS</a></li>
-<li><a href="https://www.google.com/imgres?imgurl=https%3A%2F%2Fresize-europe1.lanmedia.fr%2Fr%2F622%2C311%2Cforcex%2Ccenter-middle%2Fimg%2Fvar%2Feurope1%2Fstorage%2Fimages%2Feurope1%2Fmedias-tele%2Ffred-et-jamy-devoilent-le-nouveau-cest-pas-sorcier-1353712%2F21066760-1-fre-FR%2FFred-et-Jamy-devoilent-le-nouveau-C-est-pas-sorcier.jpg&amp;imgrefurl=https%3A%2F%2Fwww.europe1.fr%2Fmedias-tele%2Ffred-et-jamy-devoilent-le-nouveau-cest-pas-sorcier-1353712&amp;docid=XLVABVUvKIBgHM&amp;tbnid=F-V_Lzs40s6APM%3A&amp;vet=10ahUKEwjD4OWLl8biAhVC8uAKHcBuA0kQMwhRKAEwAQ..i&amp;w=622&amp;h=311&amp;safe=off&amp;bih=766&amp;biw=1440&amp;q=image%20jamie%20fred%20et%20jamy&amp;ved=0ahUKEwjD4OWLl8biAhVC8uAKHcBuA0kQMwhRKAEwAQ&amp;iact=mrc&amp;uact=8">https://www.google.com/imgres?imgurl=https%3A%2F%2Fresize-europe1.lanmedia.fr%2Fr%2F622%2C311%2Cforcex%2Ccenter-middle%2Fimg%2Fvar%2Feurope1%2Fstorage%2Fimages%2Feurope1%2Fmedias-tele%2Ffred-et-jamy-devoilent-le-nouveau-cest-pas-sorcier-1353712%2F21066760-1-fre-FR%2FFred-et-Jamy-devoilent-le-nouveau-C-est-pas-sorcier.jpg&amp;imgrefurl=https%3A%2F%2Fwww.europe1.fr%2Fmedias-tele%2Ffred-et-jamy-devoilent-le-nouveau-cest-pas-sorcier-1353712&amp;docid=XLVABVUvKIBgHM&amp;tbnid=F-V_Lzs40s6APM%3A&amp;vet=10ahUKEwjD4OWLl8biAhVC8uAKHcBuA0kQMwhRKAEwAQ..i&amp;w=622&amp;h=311&amp;safe=off&amp;bih=766&amp;biw=1440&amp;q=image%20jamie%20fred%20et%20jamy&amp;ved=0ahUKEwjD4OWLl8biAhVC8uAKHcBuA0kQMwhRKAEwAQ&amp;iact=mrc&amp;uact=8</a> --&gt;</li>
-</ul>
-</li>
-</ul>
+<aside class="notes"><!-- 
+good gifs 
+shipit: https://giphy.com/gifs/fail-code-boat-143vPc6b08locw
+keyboard:
+ - https://giphy.com/gifs/vodafone-de-done-keyboard-l378gxtNQaXcsqY7K
+ - https://giphy.com/gifs/working-typing-cartoon-11BbGyhVmk4iLS
+ - https://giphy.com/gifs/tmnt-teenage-mutant-ninja-turtles-cFdHXXm5GhJsc
+ - https://media.giphy.com/media/3o7aCTfyhYawdOXcFW/giphy.gif
+c pas sorcier 
+- https://gfycat.com/fr/grandwearyflea
+- https://giphy.com/gifs/cannabis-jamy-gourmaud-I9LxqeAcsBRNS
+- https://www.google.com/imgres?imgurl=https%3A%2F%2Fresize-europe1.lanmedia.fr%2Fr%2F622%2C311%2Cforcex%2Ccenter-middle%2Fimg%2Fvar%2Feurope1%2Fstorage%2Fimages%2Feurope1%2Fmedias-tele%2Ffred-et-jamy-devoilent-le-nouveau-cest-pas-sorcier-1353712%2F21066760-1-fre-FR%2FFred-et-Jamy-devoilent-le-nouveau-C-est-pas-sorcier.jpg&imgrefurl=https%3A%2F%2Fwww.europe1.fr%2Fmedias-tele%2Ffred-et-jamy-devoilent-le-nouveau-cest-pas-sorcier-1353712&docid=XLVABVUvKIBgHM&tbnid=F-V_Lzs40s6APM%3A&vet=10ahUKEwjD4OWLl8biAhVC8uAKHcBuA0kQMwhRKAEwAQ..i&w=622&h=311&safe=off&bih=766&biw=1440&q=image%20jamie%20fred%20et%20jamy&ved=0ahUKEwjD4OWLl8biAhVC8uAKHcBuA0kQMwhRKAEwAQ&iact=mrc&uact=8 -->
 <style>
   .flex {
     display: flex;

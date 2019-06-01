@@ -13,18 +13,18 @@
 Héticien de la P2017
 
 <div class="flex">
-  <span>Frontend engineer </span><img src="resources/logo-sketchfab.png" class="simple-image" style="width:200px" />
+  <span>Frontend engineer&nbsp;</span><img src="resources/logo-sketchfab.png" class="simple-image" style="width:200px" />
 </div>
 
 <div class="flex">
-[@gvergnaud](https://github.com/gvergnaud)<span> on </span><img
+[@gvergnaud](https://github.com/gvergnaud)<span>&nbsp;on&nbsp;</span><img
   src="resources/logo-github.png"
   class="simple-image"
   style="width:50px;" />
 </div>
 
 <div class="flex">
-[@GabrielVergnaud](https://twitter.com/GabrielVergnaud)<span> on </span><img
+[@GabrielVergnaud](https://twitter.com/GabrielVergnaud)<span>&nbsp;on&nbsp;</span><img
   src="resources/logo-twitter.png"
   class="simple-image"
   style="width:50px;" />
@@ -57,7 +57,7 @@ Note:
 <div style="display:flex; flex-direction: column; align-items: flex-start; width: 600px; margin: 0 auto;">
   <div class="flex">
     <h3 style="margin:0; margin-right:10px;">I.</h3>
-    recapitulatif sur react
+    récapitulatif sur react
   </div>
 
   <div class="flex">
@@ -67,19 +67,14 @@ Note:
 
   <div class="flex">
     <h3 style="margin:0; margin-right:10px;">III.</h3>
-    les side effects
-  </div>
-
-  <div class="flex">
-    <h3 style="margin:0; margin-right:10px;">exercice.</h3>
-    <img class="simple-image" src="resources/logo-notion.png" style="width: 70px" /><span> Cloner Notion </span>
+    <span>exercice : cloner Notion&nbsp;</span><img class="simple-image" src="resources/logo-notion.png" style="width: 70px" />
   </div>
 </div>
 
 ---
 
 # I
-petit recapitulatif sur **React** ...
+Petit récapitulatif sur **React** ...
 
 ---
 
@@ -286,7 +281,7 @@ const reducer = (sum, phrase) => sum + phrase.length
 ```
 
 <div class="fragment">
-<p>ici le type est **concret** est</p>
+<p>ici le type **concret** est</p>
 
 <p>`(number, string) => number`</p>
 </div>
@@ -340,7 +335,7 @@ Note:
 
 <p class="fragment">**Serialisable**</p>
 
-<p class="fragment"><small>On peut envoyer en action via **HTTP** ou **WebSocket**</small></p>
+<p class="fragment"><small>On peut envoyer une action via **HTTP** ou **WebSocket**</small></p>
 
 <p class="fragment">**Transformable**</p>
 
@@ -401,13 +396,13 @@ export const types = {/* ... */}
 
 export const actions = {/* ... */}
 
+export const selectors = {/* ... */}
+
 export const initialState = {/* ... */}
 
 export const reducer = (state, action) => {/* ... */}
-
-export const selectors = {/* ... */}
 ```
-<small>un module exporte des **types**, des **actions**, un **reducer** et des **selectors**.</small>
+<small>un module exporte des **types**, des **actions**, des **selectors**, un **initialState** et un **reducer**.</small>
 
 
 ---
@@ -435,6 +430,29 @@ export const actions = {
 ---
 
 ```js
+export const selectors = {
+  count: (state) => state.count
+}
+```
+
+le state doit être **minimal**. 
+
+<small>Tout ce qui peut être **dérivé** du state doit être défini avec des selectors.</small>
+
+Note:
+
+- les selectors
+  - l'idée c'est d'avoir le plus petit state possible. 
+  - Des que quelque chose dans notre state peut être dérivé d'autre chose, alors il n'a plus sa place dans le state.
+  - les selectors sont des functions qui permettent de dériver une valeur du state.
+  - un peu comme les computed properties en vue.
+
+
+
+
+---
+
+```js
 
 export const initialState = {
   count: 0
@@ -457,28 +475,6 @@ export const reducer = (state, action) => {
 ```
 
 ---
-
-```js
-export const selectors = {
-  count: (state) => state.count
-}
-```
-
-le state doit être **minimal**. 
-
-<small>Tout ce qui peut être **dérivé** du state doit être défini avec des selectors.</small>
-
-Note:
-
-- les selectors
-  - l'idée c'est d'avoir le plus petit state possible. 
-  - Des que quelque chose dans notre state peut être dérivé d'autre chose, alors il n'a plus sa place dans le state.
-  - les selectors sont des functions qui permettent de dériver une valeur du state.
-  - un peu comme les computed properties en vue.
-
-
-
----
 <h3 class="white">DEMO</h3>
 
 <!-- .slide: data-background="https://media.giphy.com/media/3o7aCTfyhYawdOXcFW/giphy.gif" -->
@@ -490,7 +486,7 @@ Un state facile à faire **évoluer**
 
 <small class="fragment">Toutes les modifications de state sont **au même endroit**.</small>
 <small class="fragment">Que des fonctions pures implique un comportement **consistent** et **prévisible**.</small>
-<small class="fragment">Le state **read-only** accessible que par des selecteurs permet **refacto** sans casser l'API public.</small>
+<small class="fragment">Le state **read-only**, accessible par des selecteurs, permet **refacto** sans casser l'API public.</small>
 <small class="fragment">On peut ajouter des fonctionnalités sans augmenter la **complexité** du code.</small>
 
 Note:
@@ -709,8 +705,8 @@ de votre attention
 - [Twitter](https://twitter.com/GabrielVergnaud)
 - [LinkedIn](https://www.linkedin.com/in/gabriel-vergnaud-09446199)
 
-<!-- 
 Note:
+<!-- 
 good gifs 
 shipit: https://giphy.com/gifs/fail-code-boat-143vPc6b08locw
 keyboard:
