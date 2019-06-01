@@ -105,7 +105,7 @@ Component              Component
 ---
 
 ### le state
-<p class="fragment">la **data** qui défini l'interface</p>
+<p class="fragment">la **data** qui définit l'interface</p>
 <p class="fragment">Quand le state **update**, l'interface **update**</p>
 
 Note:
@@ -116,8 +116,8 @@ Note:
 
 ---
 <div class="flex">
-  <img class="simple-image" src="resources/todo-state.png" style="width:40vw" />
-  <img src="resources/todo-app.png" style="width:40vw" />
+  <img class="simple-image" src="resources/todo-state.png" style="flex: 1; max-width: 45vw;" />
+  <img src="resources/todo-app.png" style="flex: 1; max-width: 45vw;" />
 </div>
 
 ---
@@ -331,7 +331,7 @@ Note:
 
 ---
 
-<small>Les **actions** sont</small>
+<small>Une **action** est</small>
 
 <p class="fragment">**Serialisable**</p>
 
@@ -485,7 +485,7 @@ export const reducer = (state, action) => {
 Un state facile à faire **évoluer**
 
 <small class="fragment">Toutes les modifications de state sont **au même endroit**.</small>
-<small class="fragment">Que des fonctions pures implique un comportement **consistent** et **prévisible**.</small>
+<small class="fragment">N'avoir que des fonctions pures implique un comportement **consistent** et **prévisible**.</small>
 <small class="fragment">Le state **read-only**, accessible par des selecteurs, permet **refacto** sans casser l'API public.</small>
 <small class="fragment">On peut ajouter des fonctionnalités sans augmenter la **complexité** du code.</small>
 
@@ -562,7 +562,7 @@ Pour garder un code maintenable il faut **décomposer** les fonctions complexes 
 
 ---
 
-autre libs de state-management
+Autres libs de state-management
 
 - mobx
 - vuex
@@ -656,7 +656,7 @@ Une action n'est que de la **donnée**
 
 ---
 
-<small>Ce pattern pert</small>
+<small>Ce pattern permet</small>
 <p class=fragment>de réduire la **complexité** du code</p>
 <p class=fragment>et d'**optimiser** le code pour le **changement**</p>
 
@@ -671,7 +671,7 @@ https://overreacted.io/optimized-for-change/
 
 <small>Un code optimisé pour le changement est un code</small>
 <br>
-Sans relations **implicites** entre ses parties
+Sans relation **implicite** entre ses parties
 
 
 Note:
