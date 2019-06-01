@@ -543,12 +543,34 @@ Pour garder un code maintenable il faut **décomposer** les fonctions complexes 
 
 ---
 
-<small>(fin de la parenthèse)</small>
+<img src=https://media.giphy.com/media/rHYkDUYtFD8ty/giphy.gif style="height:50vh" />
+
+<small class="fragment">(fin de la parenthèse)</small>
 
 ---
 
-State libraries
-- redux
+### State libraries
+
+<img class=simple-image src=resources/logo-redux.png style="height: 25vh" />
+
+---
+
+<small class=white>Redux permet de construire un **arbre de reducers**</small>
+
+<img class=simple-image src=resources/reducer-tree-white.png style="height: 50vh" />
+
+<small class=white>Grâce à **combineReducers()**</small>
+
+
+<!-- .slide: data-background="resources/tree3-dark.jpg" -->
+
+---
+
+autre libs de state-management
+
+- mobx
+- vuex
+- ...
 
 Note:
 
@@ -568,11 +590,15 @@ Note:
 
 ---
 
-Resources intéressantes sur la gestion du state
+### 👑
+Ressources pour devenir un **roi** du **state**
 
 ---
 
-Make impossible state impossible
+<p class=white>Make impossible state impossible</p>
+https://www.youtube.com/watch?v=IcgmSRJHu_8
+
+<!-- .slide: data-background="resources/make-impossible-state-impossible.jpg" -->
 
 Note:
 
@@ -585,25 +611,74 @@ Note:
 
 ---
 
-Know your data structures!
+<div class=flex>
+  <img class="simple-image" src="resources/itsy-bitsy.png" style="height:50vh" />
+  <div style="flex:1">
+  <p><small>Know your **data structures**!</small></p>
 
-List vs Set vs Map vs Queue vs Stack vs Trees vs Graphs vs Binary Trees ...
+  <p><small>**List** vs **Set** vs **Map** vs **Queue** vs **Stack** vs **Trees** vs **Graphs** vs **Binary Trees** ...</small></p>
 
-[Itsy Bitsy Data Structures](https://github.com/jamiebuilds/itsy-bitsy-data-structures)
+  <p>https://github.com/jamiebuilds/itsy-bitsy-data-structures</p>
+  </div>
+</div>
+
 
 ---
 
-Recap
+### En résumé
+
+---
+
+Un state reducer est une **fonction**
+
+<small>qui prend le **state précédent** et qui retourne le **state suivant**</small>
+
+---
+
+<small>Pour savoir comment modifier le state</small>
+<br>
+le reducer a besoin d'**une action**
+
+---
+
+Une action n'est que de la **donnée**
+
+<small>Un objet qui **décrit** les changements à apporter au state</small>
+
+---
+
+
+<small>un module de state contient</small>
+<br>
+<p class=fragment>un **reducer**</p>
+<p class=fragment>des **actions**</p>
+<p class=fragment>des **selectors**</p>
+<p class=fragment>des **types**</p>
+
+
+
+
+---
+
+<small>Ce pattern pert</small>
+<p class=fragment>de réduire la **complexité** du code</p>
+<p class=fragment>et d'**optimiser** le code pour le **changement**</p>
+
+
+---
+
+Dan abramov — Optimized for change
+
+https://overreacted.io/optimized-for-change/
+
+---
+
+<small>Un code optimisé pour le changement est un code</small>
+<br>
+Sans relations **implicites** entre ses parties
+
 
 Note:
-
-
-- Recapitulons: Le state reducer pattern
-  - un module de state contient
-    - un reducer
-    - des actions
-    - des selectors
-    - des types
 
   - ce pattern permet de réduire la complexité du code, et d'**optimiser le code pour le changement**
   - (Parenthese) La pire erreur qu'on peut faire en temps que developer c'est de croire que l'on sait comment le produit va évoluer. Les business requirement peuvent changer, votre produit peut pivoter... On ne peut pas deviner ce qu'il faudra changer dans le future. Il faut mettre cette incertitude au coeur de nos choix de design, et garder la plus grande flexibilité possible dans notre codebase.
@@ -616,7 +691,7 @@ Note:
 
 ### Merci
 
-##### de votre attention
+de votre attention
 
 
 ---
@@ -634,7 +709,7 @@ Note:
 - [Twitter](https://twitter.com/GabrielVergnaud)
 - [LinkedIn](https://www.linkedin.com/in/gabriel-vergnaud-09446199)
 
-
+<!-- 
 Note:
 good gifs 
 shipit: https://giphy.com/gifs/fail-code-boat-143vPc6b08locw
@@ -646,7 +721,7 @@ keyboard:
 c pas sorcier 
 - https://gfycat.com/fr/grandwearyflea
 - https://giphy.com/gifs/cannabis-jamy-gourmaud-I9LxqeAcsBRNS
-- https://www.google.com/imgres?imgurl=https%3A%2F%2Fresize-europe1.lanmedia.fr%2Fr%2F622%2C311%2Cforcex%2Ccenter-middle%2Fimg%2Fvar%2Feurope1%2Fstorage%2Fimages%2Feurope1%2Fmedias-tele%2Ffred-et-jamy-devoilent-le-nouveau-cest-pas-sorcier-1353712%2F21066760-1-fre-FR%2FFred-et-Jamy-devoilent-le-nouveau-C-est-pas-sorcier.jpg&imgrefurl=https%3A%2F%2Fwww.europe1.fr%2Fmedias-tele%2Ffred-et-jamy-devoilent-le-nouveau-cest-pas-sorcier-1353712&docid=XLVABVUvKIBgHM&tbnid=F-V_Lzs40s6APM%3A&vet=10ahUKEwjD4OWLl8biAhVC8uAKHcBuA0kQMwhRKAEwAQ..i&w=622&h=311&safe=off&bih=766&biw=1440&q=image%20jamie%20fred%20et%20jamy&ved=0ahUKEwjD4OWLl8biAhVC8uAKHcBuA0kQMwhRKAEwAQ&iact=mrc&uact=8
+- https://www.google.com/imgres?imgurl=https%3A%2F%2Fresize-europe1.lanmedia.fr%2Fr%2F622%2C311%2Cforcex%2Ccenter-middle%2Fimg%2Fvar%2Feurope1%2Fstorage%2Fimages%2Feurope1%2Fmedias-tele%2Ffred-et-jamy-devoilent-le-nouveau-cest-pas-sorcier-1353712%2F21066760-1-fre-FR%2FFred-et-Jamy-devoilent-le-nouveau-C-est-pas-sorcier.jpg&imgrefurl=https%3A%2F%2Fwww.europe1.fr%2Fmedias-tele%2Ffred-et-jamy-devoilent-le-nouveau-cest-pas-sorcier-1353712&docid=XLVABVUvKIBgHM&tbnid=F-V_Lzs40s6APM%3A&vet=10ahUKEwjD4OWLl8biAhVC8uAKHcBuA0kQMwhRKAEwAQ..i&w=622&h=311&safe=off&bih=766&biw=1440&q=image%20jamie%20fred%20et%20jamy&ved=0ahUKEwjD4OWLl8biAhVC8uAKHcBuA0kQMwhRKAEwAQ&iact=mrc&uact=8 -->
 
 <style>
   .flex {
@@ -661,6 +736,7 @@ c pas sorcier
   img.simple-image.simple-image {
     border:none;
     box-shadow:none;
+    background: none;
   }
 
   .white.white.white {
