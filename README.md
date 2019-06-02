@@ -414,23 +414,19 @@ export const reducer = (state, action) => {/* ... */}
 ---
 
 ```js
-
 export const types = {
   INCREMENT: 'INCREMENT',
   DECREMENT: 'DECREMENT',
 }
-
 ```
 
 ---
 
 ```js
-
 export const actions = {
   increment: value => ({ type: types.INCREMENT, value }),
   decrement: value => ({ type: types.DECREMENT, value }),
 }
-
 ```
 
 ---
@@ -459,11 +455,9 @@ Note:
 ---
 
 ```js
-
 export const initialState = {
   count: 0
 }
-
 ```
 
 ---
