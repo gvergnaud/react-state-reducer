@@ -1,8 +1,14 @@
+---
+title: React State Reducer Pattern
+theme: solarized
+revealOptions:
+    transition: 'slide'
+---
+
 ## React
 ### State reducer pattern
 
 <p style="font-size:.7em">Slides: https://gvergnaud.github.io/react-state-reducer</p>
-
 
 ---
 
@@ -478,6 +484,21 @@ export const reducer = (state, action) => {
 <h3 class="white">DEMO</h3>
 
 <!-- .slide: data-background="https://media.giphy.com/media/3o7aCTfyhYawdOXcFW/giphy.gif" -->
+
+---
+
+<iframe
+  src="https://codesandbox.io/embed/empty-star-q0zhx?fontsize=14"
+  title="useReducer example"
+  style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+  sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+
+---
+
+<h3 class="white">Time Travel Debugging demo</h3>
+[sketchfab.com/store/3d-models](https://sketchfab.com/store/3d-models)
+
+<!-- .slide: data-background="https://media.giphy.com/media/rULGb0wtaeAEM/giphy.gif" -->
 
 ---
 

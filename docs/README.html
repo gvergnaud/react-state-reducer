@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-    <title>React — State Reducer Pattern</title>
+    <title>React State Reducer Pattern</title>
     <link rel="stylesheet" href="./css/reveal.css" />
     <link rel="stylesheet" href="./css/theme/solarized.css" id="theme" />
     <link rel="stylesheet" href="./css/highlight/atom-one-dark.css" />
@@ -13,11 +13,12 @@
   </head>
   <body>
     <div class="reveal">
-      <div class="slides"><section  data-markdown><script type="text/template">## React
+      <div class="slides"><section  data-markdown><script type="text/template">
+
+## React
 ### State reducer pattern
 
 <p style="font-size:.7em">Slides: https://gvergnaud.github.io/react-state-reducer</p>
-
 </script></section><section  data-markdown><script type="text/template">
 ## 👋
 
@@ -115,7 +116,7 @@ Component              Component</p>
 </ul>
 </aside></script></section><section  data-markdown><script type="text/template">
 ### le state
-<p class="fragment">la **data** qui défini l'interface</p>
+<p class="fragment">la **data** qui définit l'interface</p>
 <p class="fragment">Quand le state **update**, l'interface **update**</p>
 
 <aside class="notes"><ul>
@@ -126,8 +127,8 @@ Component              Component</p>
 </li>
 </ul>
 </aside></script></section><section  data-markdown><script type="text/template"><div class="flex">
-  <img class="simple-image" src="resources/todo-state.png" style="width:40vw" />
-  <img src="resources/todo-app.png" style="width:40vw" />
+  <img class="simple-image" src="resources/todo-state.png" style="flex: 1; max-width: 45vw;" />
+  <img src="resources/todo-app.png" style="flex: 1; max-width: 45vw;" />
 </div>
 </script></section><section  data-markdown><script type="text/template">
 `view = f(state)`
@@ -313,7 +314,7 @@ const DECREMENT = 'DECREMENT'
 </li>
 </ul>
 </aside></script></section><section  data-markdown><script type="text/template">
-<small>Les **actions** sont</small>
+<small>Une **action** est</small>
 
 <p class="fragment">**Serialisable**</p>
 
@@ -446,11 +447,22 @@ export const reducer = (state, action) => {
 
 <!-- .slide: data-background="https://media.giphy.com/media/3o7aCTfyhYawdOXcFW/giphy.gif" -->
 </script></section><section  data-markdown><script type="text/template">
+<iframe
+  src="https://codesandbox.io/embed/empty-star-q0zhx?fontsize=14"
+  title="useReducer example"
+  style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+  sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+</script></section><section  data-markdown><script type="text/template">
+<h3 class="white">Time Travel Debugging demo</h3>
+[sketchfab.com/store/3d-models](https://sketchfab.com/store/3d-models)
+
+<!-- .slide: data-background="https://media.giphy.com/media/rULGb0wtaeAEM/giphy.gif" -->
+</script></section><section  data-markdown><script type="text/template">
 
 Un state facile à faire **évoluer**
 
 <small class="fragment">Toutes les modifications de state sont **au même endroit**.</small>
-<small class="fragment">Que des fonctions pures implique un comportement **consistent** et **prévisible**.</small>
+<small class="fragment">N'avoir que des fonctions pures implique un comportement **consistent** et **prévisible**.</small>
 <small class="fragment">Le state **read-only**, accessible par des selecteurs, permet **refacto** sans casser l'API public.</small>
 <small class="fragment">On peut ajouter des fonctionnalités sans augmenter la **complexité** du code.</small>
 
@@ -511,7 +523,7 @@ Pour garder un code maintenable il faut **décomposer** les fonctions complexes 
 
 <!-- .slide: data-background="resources/tree3-dark.jpg" -->
 </script></section><section  data-markdown><script type="text/template">
-autre libs de state-management
+Autres libs de state-management
 
 - mobx
 - vuex
@@ -594,7 +606,7 @@ Une action n'est que de la **donnée**
 
 
 </script></section><section  data-markdown><script type="text/template">
-<small>Ce pattern pert</small>
+<small>Ce pattern permet</small>
 <p class=fragment>de réduire la **complexité** du code</p>
 <p class=fragment>et d'**optimiser** le code pour le **changement**</p>
 
@@ -605,7 +617,7 @@ https://overreacted.io/optimized-for-change/
 </script></section><section  data-markdown><script type="text/template">
 <small>Un code optimisé pour le changement est un code</small>
 <br>
-Sans relations **implicites** entre ses parties
+Sans relation **implicite** entre ses parties
 
 
 <aside class="notes"><ul>
