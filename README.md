@@ -19,7 +19,7 @@ revealOptions:
 Héticien de la P2017
 
 <div class="flex">
-  <span>Frontend engineer&nbsp;</span><img src="resources/logo-sketchfab.png" class="simple-image" style="width:200px" />
+  <span>Frontend engineer at&nbsp;</span><img src="resources/logo-sketchfab.png" class="simple-image" style="width:200px" />
 </div>
 
 <div class="flex">
@@ -53,7 +53,7 @@ Note:
 
 Note:
 - Qui etes vous ?
-  - Techno utilisée ? 
+  - Techno utilisée ?
   - quels projets ?
   - plutot agence / produits ?
 
@@ -437,14 +437,14 @@ export const selectors = {
 }
 ```
 
-le state doit être **minimal**. 
+le state doit être **minimal**.
 
 <small>Tout ce qui peut être **dérivé** du state doit être défini avec des selectors.</small>
 
 Note:
 
 - les selectors
-  - l'idée c'est d'avoir le plus petit state possible. 
+  - l'idée c'est d'avoir le plus petit state possible.
   - Des que quelque chose dans notre state peut être dérivé d'autre chose, alors il n'a plus sa place dans le state.
   - les selectors sont des functions qui permettent de dériver une valeur du state.
   - un peu comme les computed properties en vue.
@@ -500,14 +500,14 @@ export const reducer = (state, action) => {
 Un state facile à faire **évoluer**
 
 <small class="fragment">Toutes les modifications de state sont **au même endroit**.</small>
-<small class="fragment">N'avoir que des fonctions pures implique un comportement **consistent** et **prévisible**.</small>
+<small class="fragment">N'avoir que des fonctions pures implique un comportement **consistant** et **prévisible**.</small>
 <small class="fragment">Le state **read-only**, accessible par des selecteurs, permet **refacto** sans casser l'API public.</small>
 <small class="fragment">On peut ajouter des fonctionnalités sans augmenter la **complexité** du code.</small>
 
 Note:
-    
+
   - structurer son state grace au `state reducer pattern` permet de:
-    - Avoir une application dont le comportement est prévisible et consistant. 
+    - Avoir une application dont le comportement est prévisible et consistant.
     - avoir toutes les modifications de state **au même endroit**.
     - ne pas pouvoir setter le state de manière arbitraire
     - lire le state seulement par des accesseurs
@@ -721,15 +721,15 @@ de votre attention
 - [LinkedIn](https://www.linkedin.com/in/gabriel-vergnaud-09446199)
 
 Note:
-<!-- 
-good gifs 
+<!--
+good gifs
 shipit: https://giphy.com/gifs/fail-code-boat-143vPc6b08locw
 keyboard:
  - https://giphy.com/gifs/vodafone-de-done-keyboard-l378gxtNQaXcsqY7K
  - https://giphy.com/gifs/working-typing-cartoon-11BbGyhVmk4iLS
  - https://giphy.com/gifs/tmnt-teenage-mutant-ninja-turtles-cFdHXXm5GhJsc
  - https://media.giphy.com/media/3o7aCTfyhYawdOXcFW/giphy.gif
-c pas sorcier 
+c pas sorcier
 - https://gfycat.com/fr/grandwearyflea
 - https://giphy.com/gifs/cannabis-jamy-gourmaud-I9LxqeAcsBRNS
 - https://www.google.com/imgres?imgurl=https%3A%2F%2Fresize-europe1.lanmedia.fr%2Fr%2F622%2C311%2Cforcex%2Ccenter-middle%2Fimg%2Fvar%2Feurope1%2Fstorage%2Fimages%2Feurope1%2Fmedias-tele%2Ffred-et-jamy-devoilent-le-nouveau-cest-pas-sorcier-1353712%2F21066760-1-fre-FR%2FFred-et-Jamy-devoilent-le-nouveau-C-est-pas-sorcier.jpg&imgrefurl=https%3A%2F%2Fwww.europe1.fr%2Fmedias-tele%2Ffred-et-jamy-devoilent-le-nouveau-cest-pas-sorcier-1353712&docid=XLVABVUvKIBgHM&tbnid=F-V_Lzs40s6APM%3A&vet=10ahUKEwjD4OWLl8biAhVC8uAKHcBuA0kQMwhRKAEwAQ..i&w=622&h=311&safe=off&bih=766&biw=1440&q=image%20jamie%20fred%20et%20jamy&ved=0ahUKEwjD4OWLl8biAhVC8uAKHcBuA0kQMwhRKAEwAQ&iact=mrc&uact=8 -->
