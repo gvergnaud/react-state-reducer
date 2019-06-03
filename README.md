@@ -5,8 +5,8 @@ revealOptions:
     transition: 'slide'
 ---
 
-## React
-### State reducer pattern
+### React
+## State reducer pattern
 
 <p style="font-size:.7em">Slides: https://gvergnaud.github.io/react-state-reducer</p>
 
@@ -43,19 +43,6 @@ Note:
   - developer à Sketchfab.com (On recrute!)
   - gvergnaud on github
   - GabrielVergnaud on twitter
-
----
-
-
-## 👀
-<p class="fragment">Qui êtes vous ?</p>
-
-
-Note:
-- Qui etes vous ?
-  - Techno utilisée ?
-  - quels projets ?
-  - plutot agence / produits ?
 
 ---
 
@@ -230,6 +217,16 @@ State reducer pattern
 
 ---
 
+2 principes
+
+<small class="fragment">Le state de notre application est contenu dans **un seul object**</small>
+<br>
+<small class="fragment">Les mutations de state sont toutes réalisé à un seul endroit: **le reducer**</small>
+
+
+
+---
+
 Un nouveau hook
 
 ```js
@@ -368,6 +365,15 @@ Note:
 
 ---
 
+
+<iframe
+  src="https://codesandbox.io/embed/empty-star-q0zhx?fontsize=14&view=editor"
+  title="useReducer example"
+  style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+  sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+
+---
+
 <small>(Parenthèse)</small>
 
 <small>en **TypeScript** on peut représenter nos actions comme un **type union**, ce qui permet de s'assurer que son code est **valide**</small>
@@ -481,11 +487,7 @@ export const reducer = (state, action) => {
 
 ---
 
-<iframe
-  src="https://codesandbox.io/embed/empty-star-q0zhx?fontsize=14"
-  title="useReducer example"
-  style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-  sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+<iframe src="https://codesandbox.io/embed/usereducer-example-8hydo?fontsize=14&view=editor" title="useReducer example 2" allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
 
 ---
 
